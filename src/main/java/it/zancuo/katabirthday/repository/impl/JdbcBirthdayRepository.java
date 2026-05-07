@@ -18,7 +18,7 @@ public class JdbcBirthdayRepository implements BirthdayRepository {
 	@Override
 	public List<Person> findAll() {
 		String sql = """
-						SELECT id, surname, name, birth_date, email
+						SELECT id, surname, name, birth_date, email, phone_number
 						FROM persons
 					 """;
 
@@ -28,7 +28,8 @@ public class JdbcBirthdayRepository implements BirthdayRepository {
                         rs.getString("surname"),
                         rs.getString("name"),
                         rs.getDate("birth_date").toLocalDate(),
-                        rs.getString("email")));
+                        rs.getString("email"),
+                        rs.getString("phone_number")));
     }
 	
 }

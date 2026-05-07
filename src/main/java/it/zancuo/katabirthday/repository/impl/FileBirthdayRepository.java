@@ -70,7 +70,7 @@ public class FileBirthdayRepository implements BirthdayRepository {
         String[] parts = line.split("\\s*,\\s*");
         
         //controllo che lo split sia andato a buon fine
-        if (parts.length != 4) {
+        if (parts.length != 5) {
             log.warn("Formato linea non valido: '{}'. Linea skippata.", line);
             return null;
         }
@@ -81,7 +81,8 @@ public class FileBirthdayRepository implements BirthdayRepository {
         					  parts[0],
         					  parts[1],
         					  LocalDate.parse(parts[2]),
-        					  parts[3]);
+        					  parts[3],
+        					  parts[4]);
 
         } catch (DateTimeParseException e) {
 

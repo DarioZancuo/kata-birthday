@@ -30,7 +30,8 @@ public class JpaBirthdayRepository implements BirthdayRepository {
                 entity.getSurname(),
                 entity.getName(),
                 entity.getBirthDate(),
-                entity.getEmail());
+                entity.getEmail(),
+                entity.getPhoneNumber());
     }
     
 }

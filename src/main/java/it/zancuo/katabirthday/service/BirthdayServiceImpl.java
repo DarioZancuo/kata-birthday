@@ -13,19 +13,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BirthdayServiceImpl implements BirthdayService {
 
-    private final BirthdayRepository birthdayRepository;
+	private final BirthdayRepository birthdayRepository;
 
-    @Override
-    public List<Person> findBirthdays(LocalDate currentDate) {
-    	
-    	List<Person> personL = birthdayRepository.findAll();
-    	
+	@Override
+	public List<Person> findBirthdays(LocalDate currentDate) {
+
+		List<Person> personL = birthdayRepository.findAll();
+
 		return personL.stream()
 				.filter(person -> isBirthday(person, currentDate))
 				.toList();
-    }
-    
-    @Override
+	}
+
+	@Override
     public void processBirthdays(LocalDate currentDate) {
 
         List<Person> birthdayPeople = findBirthdays(currentDate);
@@ -36,29 +36,41 @@ public class BirthdayServiceImpl implements BirthdayService {
         }
 
         birthdayPeople.forEach(person -> log.info(
-                "Happy birthday, dear {} {}! Email sent to: {}",
-                person.name(),
-                person.surname(),
-                person.email()));
+        	        "Happy birthday, dear {} {}!",
+        	        person.name(),
+        	        person.surname()
+        		));
+        
+        birthdayPeople.forEach(person -> log.info(
+        			"Email sent to: {}",
+        			person.email()
+    		));
+        
+        birthdayPeople.forEach(person -> log.info(
+        			"SMS sent to: {}",
+        			person.phoneNumber()
+    		));
+        
+   	 
     }
 
-    //helper
-    private boolean isBirthday(Person person, LocalDate currentDate) {
+	// helper
+	private boolean isBirthday(Person person, LocalDate currentDate) {
 
-        LocalDate birthDate = person.birthDate();
+		LocalDate birthDate = person.birthDate();
 
-        //caso standard
-        if(birthDate.getMonth() == currentDate.getMonth() && 
-           birthDate.getDayOfMonth() == currentDate.getDayOfMonth()) {
-            return true;
-        }
-        
-        //caso corner (compleanno 29/02 anno bisestile)
+		// caso standard
+		if (birthDate.getMonth() == currentDate.getMonth()
+				&& birthDate.getDayOfMonth() == currentDate.getDayOfMonth()) {
+			return true;
+		}
+
+		// caso corner (compleanno 29/02 anno bisestile)
 		return birthDate.getMonthValue() == 2 
 				&& birthDate.getDayOfMonth() == 29 
 				&& !currentDate.isLeapYear()
 				&& currentDate.getMonthValue() == 2 
 				&& currentDate.getDayOfMonth() == 28;
-    }
-    
+	}
+
 }

@@ -31,7 +31,8 @@ public class BirthdayServiceImplTest {
                 				   "Zancuo",
                 				   "Dario",
                 				   LocalDate.of(1995, 5, 6),
-                				   "dario.zancuo@mail.com"
+                				   "dario.zancuo@mail.com",
+                				   "3254896541"
         );
 
         when(birthdayR.findAll()).thenReturn(List.of(p1Test));

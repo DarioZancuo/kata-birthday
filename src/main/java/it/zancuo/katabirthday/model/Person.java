@@ -7,6 +7,7 @@ public record Person(Long id,
 					 String surname, 
 					 String name, 
 					 LocalDate birthDate,
-					 String email) {
+					 String email,
+					 String phoneNumber) {
 	
 }

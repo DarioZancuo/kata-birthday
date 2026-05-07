@@ -27,5 +27,5 @@ public class PersonEntity {
     private String name;
     private LocalDate birthDate;
     private String email;
-    
+    private String phoneNumber;
 }
