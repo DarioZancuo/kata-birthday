@@ -25,10 +25,6 @@ public class FileBirthdayRepository implements BirthdayRepository {
     @Value("${birthday.file.path}")
     private Path filePath;
 
-//    public FileBirthdayRepository(@Value("${birthday.file.path}") String filePath) {
-//        this.filePath = Path.of(filePath);
-//    }
-
     //eseguo subito il caricamento
     @PostConstruct
     public void init() {

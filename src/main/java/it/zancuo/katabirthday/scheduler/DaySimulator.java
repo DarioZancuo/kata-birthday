@@ -19,7 +19,7 @@ public class DaySimulator {
 
     private LocalDate simulatedDate = START_DATE;
 
-    @Scheduled(fixedRate = 100, initialDelay = 1000)
+    @Scheduled(fixedRate = 100, initialDelay = 5000)
     public void simulateNextDay() {
 
         if (simulatedDate.isAfter(END_DATE)) {
