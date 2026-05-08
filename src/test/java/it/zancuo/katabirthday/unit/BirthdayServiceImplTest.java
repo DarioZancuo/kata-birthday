@@ -1,4 +1,4 @@
-package it.zancuo.katabirthday;
+package it.zancuo.katabirthday.unit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
