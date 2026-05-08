@@ -34,14 +34,55 @@ public class BirthdayServiceImplTest {
                 				   "dario.zancuo@mail.com",
                 				   "3254896541"
         );
+        
+        Person p2Test = new Person(null,
+        						   "Biffa",
+        						   "Emanuele",
+        						   LocalDate.of(1998, 5, 6),
+        						   "biffaemanuele@mail.com",
+        						   "3254896541"
+        	);
 
-        when(birthdayR.findAll()).thenReturn(List.of(p1Test));
+        when(birthdayR.findAll()).thenReturn(List.of(p1Test,p2Test));
+        
 
         List<Person> result = birthdayS.findBirthdays(currentDate);
 
         assertThat(result)
-                .hasSize(1)
-                .containsExactly(p1Test);
+                .hasSize(2)
+               .containsExactlyInAnyOrder(p1Test,p2Test);
+    }
+    
+    @Test
+    void noBirthdayFoundTest() {
+    	
+    	LocalDate currentDate = LocalDate.of(2026, 5, 6);
+
+        Person p1Test = new Person(null,
+                				   "Zancuo",
+                				   "Dario",
+                				   LocalDate.of(1995, 9, 6),
+                				   "dario.zancuo@mail.com",
+                				   "3254896541"
+        );
+        
+        Person p2Test = new Person(null,
+        						   "Biffa",
+        						   "Emanuele",
+        						   LocalDate.of(1998, 7, 6),
+        						   "biffaemanuele@mail.com",
+        						   "3254896541"
+        	);
+
+        when(birthdayR.findAll()).thenReturn(List.of(p1Test,p2Test));
+        
+
+        List<Person> result = birthdayS.findBirthdays(currentDate);
+
+        assertThat(result)
+        			.isEmpty();
+        		
+    	
     }
    
     
